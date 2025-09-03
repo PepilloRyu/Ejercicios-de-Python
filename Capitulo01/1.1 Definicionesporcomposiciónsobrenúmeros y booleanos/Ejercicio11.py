@@ -7,35 +7,55 @@
 # ---------------------------------------------------------------------
 
 def interior(lista):
-    if len(lista) < 2:
-        print("La lista necesita almenos 2 numeros")
-        return
-    
-    primerElemento = lista.pop(0)
-    ultimoElemento = lista.pop()
-    print("Primer elemento",primerElemento)
-    print("Ultimo elemento", ultimoElemento)
-    print("Lista sin los elementos", lista)
-    return 
+    if len(lista) <= 2:
+        return []
+    return lista[1:-1]
 
-def ingresarLista():
+def finales(n, xs):
+    return xs[-n:]
+
+def pedirLista(tamano):
     lista = []
-    
-    while(True):
-        entrada = input("Numero: ")
-        if entrada.lower() == 'fin':
-            break
-        try:
-            numero = int(entrada)
-            lista.append(numero)
-        except ValueError:
-            print(f"¡Ups! '{entrada}' no es un número válido. Intenta de nuevo.")      
+    for i in range(tamano):
+        while True:
+            try:
+                num = int(input(f"Número {i+1} de {tamano}: "))
+                lista.append(num)
+                break
+            except ValueError:
+                print("Error: Ingrese un número válido")
     return lista
 
+def pedirTamañoLista():
+    while True:
+        try:
+            tamLista = int(input("Tamaño de la lista: "))
+            if tamLista >= 0:
+                return tamLista
+            print("Error: El tamaño debe ser >= 0")
+        except ValueError:
+            print("Error: Ingrese un número válido")
+
+def pedirUltimosDigitosAMostrar(tamLista):
+    while True:
+        try:
+            ultimosNumeros = int(input("Elementos a mostrar: "))
+            if 0 <= ultimosNumeros <= tamLista:
+                return ultimosNumeros
+            print(f"Error: Debe ser entre 0 y {tamLista}")
+        except ValueError:
+            print("Error: Ingrese un número válido")
+
 def inicializarPrograma():
-    lista = ingresarLista()
-    interior(lista)
+    tamLista = pedirTamañoLista()
+    lista = pedirLista(tamLista)
     
-    return
+    resultado_interior = interior(lista)
+    print(f"Interior de la lista: {resultado_interior}")
+    
+    if tamLista > 0:
+        ultimosNumeros = pedirUltimosDigitosAMostrar(tamLista)
+        resultado_finales = finales(ultimosNumeros, lista)
+        print(f"Últimos {ultimosNumeros} elementos: {resultado_finales}")
 
 inicializarPrograma()
