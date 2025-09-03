@@ -6,39 +6,32 @@
 # finales(3, [2, 5, 4, 7, 9, 6]) == [7, 9, 6]
 # ---------------------------------------------------------------------
 
-def finales(lista, ultimosNumeros):
-    print(f"Lista con los ultimos {ultimosNumeros} es {lista}")
-    return
+def finales(n, xs):
+    return xs[-n:]
 
-def pedirLista(numero):
+def pedirLista(tamano):
     lista = []
-    
-    for i in range(numero):
-        numero = int(input(f"Numero para la lista {i+1}:"))
-        lista.append(numero)
-    
+    for i in range(tamano):
+        num = int(input(f"Numero {i+1} de {tamano}: "))
+        lista.append(num)
     return lista
 
 def pedirTamañoLista():
-    print("Ingrese el tamaño de la lista")
-    tamLista = int(input("Tamaño : "))
+    tamLista = int(input("Tamaño de la lista: "))
     return tamLista
 
 def pedirUltimosDigitosAMostrar(tamLista):
-    print("Ingrese la cantidad de numeros que quiere mostrar : ")
     while True:
-        ultimosNumeros= int(input("Numero : "))
-        if tamLista > ultimosNumeros :
-            print("El tamaño de la lista debe ser mayor o igual que los numeros a mostrar")
-    
-            
-    return ultimosNumeros
+        ultimosNumeros = int(input("Elementos a mostrar: "))
+        if ultimosNumeros <= tamLista:
+            return ultimosNumeros
+        print("Error: La cantidad debe ser <= al tamaño de la lista")
 
 def inicializarPrograma():
     tamLista = pedirTamañoLista()
     ultimosNumeros = pedirUltimosDigitosAMostrar(tamLista)
     lista = pedirLista(tamLista)
-    finales(lista, ultimosNumeros)
-    return
+    resultado = finales(ultimosNumeros, lista)
+    print(f"Ultimos {ultimosNumeros} elementos: {resultado}")
 
 inicializarPrograma()
