@@ -19,7 +19,6 @@ def palindromo(lista):
     
     return True
         
-
 def ingresarLista():
     lista = [1,2,3,3,2,1]
     return lista
@@ -31,5 +30,6 @@ def inicializarPrograma():
     else:
         print("No es un palindromo")
     return
+
 
 inicializarPrograma()
